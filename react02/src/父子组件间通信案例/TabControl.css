@@ -1,0 +1,13 @@
+.tabs{
+  display: flex;
+  height: 44px;
+  line-height: 44px;
+}
+.tab-item{
+  flex: 1;
+  text-align: center;
+}
+.active{
+  color: #d23e42;
+  text-decoration: underline;
+}

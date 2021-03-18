@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_hello_world</title>
+  </head>
+  <body>
+    <div>Header</div>
+    <div id="app">content</div>
+    <div>Footer</div>
+
+  <!-- 添加React的依赖 -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- 开始开发 -->
+  <!-- 注意事项: 使用jsx, 并且希望script中的jsx的代码被解析, 必须在script标签中添加一个属性  -->
+  <script type="text/babel">
+  
+  // ---01;
+    // let message = 'Hello World';
+    // ReactDOM.render(<h2>{message}</h2>,document.getElementById('app'));
+  
+  // ---02;
+    // let message = 'Hello World';
+    // function btnClick() {
+    //   message = "Hello React";
+    //   console.log(message)
+    //   render();
+    // }
+    // function render() {
+    //   ReactDOM.render(
+    //     <div>
+    //       <h2>{message}</h2>
+    //       <button onClick={btnClick}>change</button>
+    //     </div>,
+    //     document.getElementById('app'));
+    // }
+    // render();
+    // ---03;
+    class App extends React.Component{
+      constructor(){
+        super();
+        // this.message = "Hello World"
+        this.state = {
+          message:"Hello World"
+        }
+      }
+      render() {
+        return (
+          <div>
+            <h2>{this.state.message}</h2>
+            <button onClick={this.btnClick.bind(this)}>change</button>
+          </div>
+        )
+      }
+      btnClick(){
+        // this.message = "Hello React"
+        this.setState({
+          message:"Hello React"
+        })
+      }
+    }
+    ReactDOM.render(<App/>,document.getElementById('app'))
+  </script>
+  </body>
+</html>
