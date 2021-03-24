@@ -1,6 +1,6 @@
 import React from 'react';
 import { subAction } from '../store/actionCreators';
-import { connect } from '../untils/connect0'
+import { connect } from '../untils/connect'
 
 
 function About(props) {

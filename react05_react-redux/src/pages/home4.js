@@ -1,9 +1,14 @@
 import React, { PureComponent } from 'react';
-import { addAction } from '../store/actionCreators';
 
-import { connect } from '../untils/connect'
+// import { connect } from '../untils/connect'
+import { connect } from 'react-redux'
+
+import { addAction, getHomeDataAction} from '../store/actionCreators';
 
 class Home extends PureComponent {
+  componentDidMount(){
+    this.props.getHomeData()
+  }
   render() {
     return (
       <div>
@@ -19,10 +24,13 @@ class Home extends PureComponent {
 const mapStateToProps = state => ({
   add_counter: state.add_counter
 })
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, getState) => ({
   addNumber(num){
     dispatch(addAction(num))
+  },
+  getHomeData(){
+    dispatch(getHomeDataAction)
   }
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
