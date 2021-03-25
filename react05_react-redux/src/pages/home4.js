@@ -1,3 +1,5 @@
+//redux-thunk
+
 import React, { PureComponent } from 'react';
 
 // import { connect } from '../untils/connect'

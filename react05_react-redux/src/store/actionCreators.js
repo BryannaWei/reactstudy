@@ -8,6 +8,7 @@ export const subAction = num => ({ type:SUB_NUMBER, num })
 export const getBannersAction = banners => ({ type:GET_BANNERS, banners })
 export const getRecommendsAction = recommends => ({ type:GET_RECOMMENDS, recommends })
 
+//redux-thunk
 export const getHomeDataAction = dispatch => (
   axios({
     url:"http://123.207.32.32:8000/home/multidata",
@@ -18,6 +19,7 @@ export const getHomeDataAction = dispatch => (
   })
 )
 
+//redux-saga
 export const fetchHomeDataAction = {
   type: FETCH_HOMEDATA
 }

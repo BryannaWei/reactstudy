@@ -12,6 +12,7 @@ function* fetchHomeData(action) {
 
   // yield put(getBannersAction(banners))
   // yield put(getRecommendsAction(recommends))
+  
   yield all ([
     yield put(getBannersAction(banners)),
     yield put(getRecommendsAction(recommends))
@@ -19,7 +20,7 @@ function* fetchHomeData(action) {
   )
 }
 function* mySaga() {
-  
+
   // takeEvery takeLatest 区别:
   //takeEvery: 每一个都会被执行;
   //takeLatest: 依次只能监听一个对应的action;
