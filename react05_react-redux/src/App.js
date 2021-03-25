@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import Home from './pages/home4'
+import Home from './pages/home5'
 import About from './pages/about3'
 
 class App extends PureComponent {

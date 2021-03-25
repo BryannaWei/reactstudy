@@ -1,4 +1,4 @@
-import { ADD_NUMBER, SUB_NUMBER, GET_BANNERS, GET_RECOMMENDS, GET_HOMEDATA } from './constants'
+import { ADD_NUMBER, SUB_NUMBER, GET_BANNERS, GET_RECOMMENDS, FETCH_HOMEDATA } from './constants'
 
 import axios from 'axios'
 
@@ -17,3 +17,7 @@ export const getHomeDataAction = dispatch => (
     dispatch(getRecommendsAction(data.recommend.list))
   })
 )
+
+export const fetchHomeDataAction = {
+  type: FETCH_HOMEDATA
+}
