@@ -1,0 +1,7 @@
+a.actice,a.navlink-active{
+  color: red;
+  font-size: 25px;
+}
+a.aboutActive{
+  color: yellowgreen;
+}
