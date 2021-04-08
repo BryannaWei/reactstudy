@@ -16,8 +16,7 @@ function* fetchHomeData(action) {
   yield all ([
     yield put(getBannersAction(banners)),
     yield put(getRecommendsAction(recommends))
-  ]
-  )
+  ])
 }
 function* mySaga() {
 
@@ -25,8 +24,8 @@ function* mySaga() {
   //takeEvery: 每一个都会被执行;
   //takeLatest: 依次只能监听一个对应的action;
 
-  // yield takeEvery(FETCH_HOMEDATA, fetchHomeData)
-  yield takeLatest(FETCH_HOMEDATA, fetchHomeData)
+  yield takeEvery(FETCH_HOMEDATA, fetchHomeData)
+  // yield takeLatest(FETCH_HOMEDATA, fetchHomeData)
 }
 
 export default mySaga;
