@@ -1,15 +1,20 @@
-import React, { memo, useEffect } from 'react'
-import { connect } from 'react-redux';
+import React, { memo, useEffect } from 'react';
+import { connect, shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { getTopBannerAction } from './store/actionCreator';
 
 function JRRecommend(props) {
-  const { getBanners, topBanners } = props;
-  console.log(props)
+  
+  //组件和redux关联：获取数据和进行操作；
+  const { topBanners } = useSelector(state => ({
+    topBanners: state.recommend.topBanners
+  }), shallowEqual);
+  const dispatch = useDispatch();
 
+  //发送网络请求；
   useEffect(() => {
-    getBanners()
-  }, [getBanners])
+    dispatch(getTopBannerAction())
+  }, [dispatch]);
 
   return (
     <div>
@@ -18,15 +23,32 @@ function JRRecommend(props) {
   )
 }
 
-const mapStateToProps = state => ({
-  topBanners: state.recommend.topBanners
-})
+export default memo(JRRecommend);
 
-const mapDispatchToProps = dispatch => ({
-  getBanners: () => {
-    dispatch(getTopBannerAction())
-  }
-})
+// function JRRecommend(props) {
+//   const { getBanners, topBanners } = props;
+//   console.log(props)
+
+//   useEffect(() => {
+//     getBanners()
+//   }, [getBanners])
+
+//   return (
+//     <div>
+//       <h2>JRRecommend: {topBanners.length}</h2>
+//     </div>
+//   )
+// }
+
+// const mapStateToProps = state => ({
+//   topBanners: state.recommend.topBanners
+// })
+
+// const mapDispatchToProps = dispatch => ({
+//   getBanners: () => {
+//     dispatch(getTopBannerAction())
+//   }
+// })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(memo(JRRecommend))
+// export default connect(mapStateToProps, mapDispatchToProps)(memo(JRRecommend))
