@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch } from 'react-redux';
 
 import { getHotRecommendAction } from "../../store/actionCreator";
 import { HOT_RECOMMEND_LIMIT } from "@/common/constants";
@@ -10,9 +10,9 @@ import { HotRecommendWrapper } from "./style";
 export default memo(function JRHotRecommend() {
 
   
-  const {hotRecommends} = useSelector(state => ({
+  const { hotRecommends}  = useSelector(state => ({
     hotRecommends: state.getIn(["recommend", "hotRecommends"])
-  }))
+  }),shallowEqual)
   const dispatch = useDispatch()
 
   useEffect(() => {
