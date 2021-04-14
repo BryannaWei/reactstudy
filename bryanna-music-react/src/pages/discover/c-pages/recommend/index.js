@@ -1,24 +1,27 @@
-import React, { memo, useEffect } from 'react';
-import { connect, shallowEqual, useDispatch, useSelector } from 'react-redux';
+import React, { memo } from 'react';
 
-import { getTopBannerAction } from './store/actionCreator';
+import JRTopBanner from "./c-cpns/top-banner";
+import JRHotRecommend from "./c-cpns/hot-recommend";
+import JRNewAlbum from "./c-cpns/new-album";
+import JRRecommendRank from "./c-cpns/recommend-rank";
+
+import { RecommendWrapper, Content, RecommendLeft, RecommendRight } from "./style";
 
 function JRRecommend(props) {
   
-  //组件和redux关联：获取数据和进行操作；
-  const { topBanners } = useSelector(state => ({
-    topBanners: state.recommend.topBanners
-  }), shallowEqual);
-  const dispatch = useDispatch();
-
-  //发送网络请求；
-  useEffect(() => {
-    dispatch(getTopBannerAction())
-  }, [dispatch]);
-
   return (
     <div>
-      <h2>JRRecommend: {topBanners.length}</h2>
+      <RecommendWrapper>
+        <JRTopBanner />
+        <Content className="wrap-v2">
+          <RecommendLeft>
+            <JRHotRecommend></JRHotRecommend>
+            <JRNewAlbum></JRNewAlbum>
+            <JRRecommendRank></JRRecommendRank>
+          </RecommendLeft>
+          <RecommendRight></RecommendRight>
+        </Content>
+      </RecommendWrapper>
     </div>
   )
 }
