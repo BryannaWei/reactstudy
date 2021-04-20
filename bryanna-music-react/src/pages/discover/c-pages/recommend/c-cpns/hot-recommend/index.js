@@ -5,6 +5,7 @@ import { getHotRecommendAction } from "../../store/actionCreator";
 import { HOT_RECOMMEND_LIMIT } from "@/common/constants";
 
 import JRThemeHeaderRCM from '@/components/theme-header-rcm';
+import JRSongsCover from '@/components/songs-cover';
 import { HotRecommendWrapper } from "./style";
 
 export default memo(function JRHotRecommend() {
@@ -24,7 +25,7 @@ export default memo(function JRHotRecommend() {
       <div className="recommend-list">
         {
           hotRecommends.map(item => {
-            return (<p key={item.id} >{item.name}</p>)
+            return <JRSongsCover info={item} key={item.id} />
           })
         }
       </div>
