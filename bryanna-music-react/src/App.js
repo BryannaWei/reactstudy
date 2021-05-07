@@ -9,6 +9,8 @@ import store from '@/store';
 import JRHeader from '@/components/web-header'
 import JRFooter from '@/components/web-footer'
 
+import JRAppPlayerBar from './pages/player/app-player-bar';
+
 export default memo(function App() {
   return (
     <Provider store={store}>
@@ -16,6 +18,7 @@ export default memo(function App() {
         <JRHeader />
         {renderRoutes(routes)}
         <JRFooter />
+        <JRAppPlayerBar />
       </HashRouter>
     </Provider>
   )

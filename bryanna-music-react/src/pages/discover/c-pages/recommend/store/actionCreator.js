@@ -1,6 +1,7 @@
 import * as actionTypes from "./constants"
 
-import { getTopBanners, getHotRecommends } from "@/services/recommend";
+import { getTopBanners, getHotRecommends, getNewAlbums } from "@/services/recommend";
+import { getTopList } from "../../../../../services/recommend";
 
 const changeTopBannerAction = (res) => ({
   type: actionTypes.CHANGE_TOP_BANNERS,
@@ -24,6 +25,55 @@ export const getHotRecommendAction = (limit) => {
   return dispatch => {
     getHotRecommends(limit).then(res => {
       dispatch(changeHotRecommendAction(res))
+    })
+  }
+}
+
+const changeNewAlbumAction = res => ({
+  type: actionTypes.CHANGE_NEW_ALBUM,
+  newAlbums: res.albums
+})
+
+export const getNewAlbumsAction = limit => {
+  return dispatch => {
+    getNewAlbums(limit).then( res => {
+      dispatch(changeNewAlbumAction(res))
+    })
+  }
+}
+
+const changeUpRankingAction = res => ({
+  type: actionTypes.CHANGE_UP_RANKING,
+  upRanking: res.playlist
+})
+
+const changeNewRankingAction = res => ({
+  type: actionTypes.CHANGE_NEW_RANKING,
+  newRanking: res.playlist
+})
+
+const changeOriginAction = res => ({
+  type: actionTypes.CHANGE_ORIGIN_RANKING,
+  originRanking: res.playlist
+})
+
+export const getTopListAction = idx => {
+  return dispatch => {
+    getTopList(idx).then(res => {
+      switch (idx) {
+        case 0:
+          dispatch(changeUpRankingAction(res));
+          break;
+        case 3:
+          dispatch(changeNewRankingAction(res));
+          break;
+        case 2:
+          dispatch(changeOriginAction(res));
+          break;
+      
+        default:
+          break;
+      }
     })
   }
 }

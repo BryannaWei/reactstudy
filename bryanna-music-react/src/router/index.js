@@ -14,6 +14,7 @@ import JRMine from '@/pages/mine'
 import JRFriend from '@/pages/friend'
 
 
+
 const routes = [
   {
     path: "/",
