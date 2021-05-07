@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { getSizeImg } from '@/utils/format-utils';
@@ -13,6 +13,11 @@ import { PlaybarWrapper, Control, PlayInfo, Operator } from './style';
 export default memo(function JRAppPlayerBar() {
 
   const dispatch = useDispatch()
+  const audioRef = useRef()
+
+  const playMusic = () => {
+    audioRef.current.play()
+  }
 
   useEffect(() => {
     dispatch(getSongDetailAction(167876))
@@ -22,7 +27,7 @@ export default memo(function JRAppPlayerBar() {
       <div className="content wrap-v2">
         <Control>
           <button className="sprite_player prev"></button>
-          <button className="sprite_player play"></button>
+          <button className="sprite_player play" onClick={e => playMusic()}></button>
           <button className="sprite_player next"></button>
         </Control>
         <PlayInfo>
@@ -56,6 +61,7 @@ export default memo(function JRAppPlayerBar() {
           </div>
         </Operator>
       </div>
+      <audio ref={audioRef} />
     </PlaybarWrapper>
   )
 })
