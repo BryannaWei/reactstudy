@@ -8,7 +8,7 @@ export default memo(function JRTopRanking(props) {
   // props and state
   const { info } = props;
   const { tracks = [] } = info;
-
+  
   return (
     <TopRankingWrapper>
       <div className="header">
