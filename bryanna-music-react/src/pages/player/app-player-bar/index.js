@@ -18,6 +18,7 @@ export default memo(function JRAppPlayerBar() {
   const [progress, setProgress] = useState(0)
   const [isChanging, setIsChanging] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+
   // redux hook
   const { currentSong } = useSelector(state => ({
     currentSong: state.getIn(["player", "currentSong"])
@@ -32,6 +33,11 @@ export default memo(function JRAppPlayerBar() {
 
   useEffect(() => {
     audioRef.current.src = getPlaySong(currentSong.id);
+    audioRef.current.play().then(res => {
+      setIsPlaying(true);
+    }).catch(err => {
+      setIsPlaying(false)
+    });
   }, [currentSong]);
 
   // other handle
@@ -43,6 +49,7 @@ export default memo(function JRAppPlayerBar() {
 
   // handle function
   const playMusic = useCallback(() => {
+    console.log(audioRef.current.play())
     setIsPlaying(!isPlaying);
     !isPlaying ? audioRef.current.play() : audioRef.current.pause();
   }, [isPlaying]);
