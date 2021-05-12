@@ -7,9 +7,10 @@ import {
   getSongDetailAction,
   changeSequenceAction,
   changeCurrentIndexAndSongAction,
+  changeCurrentLyricIndexAction,
 } from '../store/actionCreators';
 
-import { Slider } from 'antd';
+import { Slider, message } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PlaybarWrapper, Control, PlayInfo, Operator } from './style';
 
@@ -22,9 +23,11 @@ export default memo(function JRAppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false)
 
   // redux hook
-  const { currentSong, sequence } = useSelector(state => ({
+  const { currentSong, sequence, lyricList, currentLyricIndex } = useSelector(state => ({
     currentSong: state.getIn(["player", "currentSong"]),
-    sequence: state.getIn(["player", "sequence"])
+    sequence: state.getIn(["player", "sequence"]),
+    lyricList: state.getIn(["player", "lyricList"]),
+    currentLyricIndex: state.getIn(["player", "currentLyricIndex"])
   }), shallowEqual);
   const dispatch = useDispatch();
   
@@ -62,6 +65,23 @@ export default memo(function JRAppPlayerBar() {
     if (!isChanging) {
       setCurrentTime(currentTime * 1000);
       setProgress(currentTime * 1000 / duration * 100);
+    }
+
+    //获取当前歌词;
+    let i = 0;
+    for (; i < lyricList.length; i++) {
+      let lyricItem = lyricList[i];
+      if (currentTime * 1000 < lyricItem.time) break;
+    }
+    if (currentLyricIndex !== i - 1) {
+      dispatch(changeCurrentLyricIndexAction(i - 1));
+      const content = lyricList[i - 1] && lyricList[i - 1].content;
+      message.open({
+        key: "lyric",
+        content,
+        duration: 0,
+        className: "lyric-class"
+      })
     }
   };
 

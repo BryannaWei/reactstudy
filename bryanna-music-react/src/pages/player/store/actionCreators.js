@@ -25,6 +25,11 @@ const changLyricListAction = lyricList => ({
   lyricList
 })
 
+export const changeCurrentLyricIndexAction = index => ({
+  type: actionTypes.CHANGE_CURRENT_LYRIC_INDEX,
+  index
+})
+
 export const changeSequenceAction = sequence => ({
   type:actionTypes.CHANGE_SEQUENCE,
   sequence

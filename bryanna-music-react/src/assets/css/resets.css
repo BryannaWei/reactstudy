@@ -117,5 +117,10 @@ body, textarea, select, input, button {
   bottom: 50px;
   background-color: rgba(0, 0, 0, .5);
   color: #fff;
+  letter-spacing: 2px;
+  font-size: 30px;
+  line-height: 30px;
+  height: 50px;
+  cursor: default;
 }
 
